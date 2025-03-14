@@ -11,7 +11,7 @@ const DATA_FILE_PATH = path.resolve('src/app/lib/data/list.json');
  */
 export async function fetchAndSaveListData(): Promise<void> {
   try {
-    console.log('开始获取数据...');
+    // console.log('开始获取数据...');
 
     // 获取 HTML 内容
     const response = await fetch(DATA_URL);
@@ -20,7 +20,7 @@ export async function fetchAndSaveListData(): Promise<void> {
     }
 
     const html = await response.text();
-    console.log('成功获取 HTML 内容');
+    // console.log('成功获取 HTML 内容');
 
     // 使用 JSDOM 解析 HTML
     const dom = new JSDOM(html, { runScripts: 'dangerously', resources: 'usable' });
@@ -32,7 +32,7 @@ export async function fetchAndSaveListData(): Promise<void> {
       throw new Error('未找到 id 为 "list" 的表格');
     }
 
-    console.log('成功找到表格');
+    // console.log('成功找到表格');
 
     // 提取表头
     const headerRow = table.querySelector('thead.colheader')?.querySelector('tr');
@@ -49,7 +49,7 @@ export async function fetchAndSaveListData(): Promise<void> {
       throw new Error('表头顺序或名称不正确');
     }
 
-    console.log('成功提取表头:', headers);
+    // console.log('成功提取表头:', headers);
 
     // 提取表格数据
     const rows = Array.from(table.querySelectorAll('tbody tr')).map((row) => {
@@ -99,7 +99,7 @@ export async function fetchAndSaveListData(): Promise<void> {
 
     // 写入 JSON 文件
     fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(jsonData, null, 2), 'utf-8');
-    console.log(`数据已成功保存到 ${DATA_FILE_PATH}`);
+    // console.log(`数据已成功保存到 ${DATA_FILE_PATH}`);
 
   } catch (error) {
     console.error('获取并保存列表数据时出错:', error);
