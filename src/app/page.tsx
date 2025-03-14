@@ -1,5 +1,10 @@
-export default function Home() {
+import FetchList from './client-components/fetchList'
+
+export default async function Home() {
+
   return (
-    <div>nextjs15</div>
+    <div>
+      <FetchList />
+    </div>
   );
 }
