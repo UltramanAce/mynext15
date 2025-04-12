@@ -3,9 +3,9 @@ import { Button } from '@heroui/button';
 export default async function Home() {
 
   return (
-    <div>
-      home
-      <Button>next ui button</Button>
-    </div>
+    <>
+      <div>nextjs15</div>
+      <Button>Click me</Button>
+    </>
   );
 }
